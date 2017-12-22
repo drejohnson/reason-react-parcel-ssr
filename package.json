@@ -1,0 +1,37 @@
+{
+  "name": "with-reason-parcel",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "concurrently \"bsb -make-world -w\" \"parcel src/index.html --public-url /dist/\"",
+    "build": "bsb -make-world | parcel build src/index.html --public-url /dist && workbox inject:manifest",
+    "start": "node server.js",
+    "workbox": "workbox inject:manifest",
+    "clean": "bsb -clean-world",
+    "reset": "bsb -clean-world && rm -r node_modules yarn.lock dist .cache && yarn",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack -w"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "parcel-bundler": "^1.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-ga": "^2.3.5",
+    "react-helmet": "^5.2.0",
+    "react-router-dom": "^4.2.2",
+    "reason-navigation": "^0.4.1",
+    "reason-react": ">=0.3.0"
+  },
+  "devDependencies": {
+    "bs-express": "^0.0.6",
+    "bs-platform": "^2.1.0",
+    "concurrently": "^3.5.1",
+    "workbox-cli": "^2.1.2",
+    "workbox-sw": "^2.1.2"
+  }
+}
