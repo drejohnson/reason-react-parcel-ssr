@@ -2,10 +2,15 @@
   "name": "with-reason-parcel",
   "version": "0.1.0",
   "scripts": {
-    "dev": "concurrently \"bsb -make-world -w\" \"parcel src/index.html --public-url /dist/\"",
-    "build": "bsb -make-world | parcel build src/index.html --public-url /dist && workbox inject:manifest",
+    "dev": "concurrently \"bsb -clean-world -make-world -w\" \"parcel src/index.html --public-url /dist/\"",
+    "prebuild": "node tools/clean.js",
+    "build": "bsb -make-world | parcel build src/index.html -d dist/client --public-url / && workbox inject:manifest",
+    "postbuild": "node tools/move.js",
     "start": "node server.js",
     "workbox": "workbox inject:manifest",
+    "move:index": "node tools/move.js",
+    "copy:static": "node tools/copy.js",
+    "clean:dist": "node tools/clean.js",
     "clean": "bsb -clean-world",
     "reset": "bsb -clean-world && rm -r node_modules yarn.lock dist .cache && yarn",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -31,6 +36,7 @@
     "bs-express": "^0.0.6",
     "bs-platform": "^2.1.0",
     "concurrently": "^3.5.1",
+    "fs-extra": "^5.0.0",
     "workbox-cli": "^2.1.2",
     "workbox-sw": "^2.1.2"
   }
