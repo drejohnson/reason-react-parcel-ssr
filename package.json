@@ -9,7 +9,6 @@
     "start": "node server.js",
     "workbox": "workbox inject:manifest",
     "move:index": "node tools/move.js",
-    "copy:static": "node tools/copy.js",
     "clean:dist": "node tools/clean.js",
     "clean": "bsb -clean-world",
     "reset": "bsb -clean-world && rm -r node_modules yarn.lock dist .cache && yarn",
