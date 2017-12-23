@@ -28,11 +28,27 @@ App.get(
         ReactDOMServerRe.renderToString(
           <ServerRouter context location> (Root.make()) </ServerRouter>
         );
-      /* let helmet = ReactHelmet.renderStatic(); */
+      let helmet = ReactHelmet.renderStatic();
+      let helmetHtmlAttributes = helmet##htmlAttributes##toString();
+      let helmetTitle = helmet##title##toString();
+      let helmetMeta = helmet##meta##toString();
+      let helmetLink = helmet##link##toString();
+      let helmetScript = helmet##script##toString();
       let filePath = Node_path.resolve("./dist", "index.html");
-      let index = Node_fs.readFileSync(filePath, `utf8);
+      let index = Node.Fs.readFileAsUtf8Sync(filePath);
       let document =
-        Js.String.replace({j|<div id="root">|j}, {j|<div id="root">$html|j}, {j|$index|j});
+        index
+        |> Js.String.replace({j|<html>|j}, {j|<html ⚡ $(helmetHtmlAttributes)>|j})
+        |> Js.String.replace(
+             {j|<head>|j},
+             {j|<head>
+              $helmetTitle
+              $helmetMeta
+              $helmetLink
+              $helmetScript
+          |j}
+           )
+        |> Js.String.replace({j|<div id="root">|j}, {j|<div id="root">$html|j});
       Response.sendString(res, document)
     }
   )
