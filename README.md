@@ -7,6 +7,7 @@
 ## Features
 
 * [x] [ReasonReact](https://reasonml.github.io/reason-react/)
+* [x] PWA - [Workbox](https://developers.google.com/web/tools/workbox/)
 * [x] SSR - Server side rendering
 * [x] [Parcel - zero config web app bundler](https://parceljs.org/)
 * [x] [React Router v4](https://reacttraining.com/react-router/api) *[bindings](https://github.com/reasonml-community/bs-react-router) (Waiting for Reason Router solution)
@@ -21,6 +22,5 @@
 
 ## TODO
 
-* [ ] Figure out [Workbox](https://developers.google.com/web/tools/workbox/) and why service worker doesn't cache for offline.
 * [ ] Add "CSS-In-Reason" library. Either [bs-css](https://github.com/SentiaAnalytics/bs-css) or [bs-react-fela](https://github.com/astrada/bs-react-fela).
 * [ ] Server side usage of React Helmet
