@@ -8,14 +8,9 @@
     "react-jsx": 2
   },
   "sources": [{
-      "dir": "src",
-      "subdirs": true
-    },
-    {
-      "dir": "server",
-      "subdirs": true
-    }
-  ],
+    "dir": "src",
+    "subdirs": true
+  }],
   "package-specs": [{
     "module": "commonjs"
   }, {
