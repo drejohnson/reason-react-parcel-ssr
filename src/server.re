@@ -6,8 +6,9 @@ let app = express();
 
 App.useOnPath(
   app,
-  ~path="/dist",
-  Express.Static.make("dist", Express.Static.defaultOptions()) |> Express.Static.asMiddleware
+  ~path="/",
+  Express.Static.make("dist/client", Express.Static.defaultOptions())
+  |> Express.Static.asMiddleware
 );
 
 App.useOnPath(
@@ -27,6 +28,7 @@ App.get(
         ReactDOMServerRe.renderToString(
           <ServerRouter context location> (Root.make()) </ServerRouter>
         );
+      /* let helmet = ReactHelmet.renderStatic(); */
       let filePath = Node_path.resolve("./dist", "index.html");
       let index = Node_fs.readFileSync(filePath, `utf8);
       let document =
