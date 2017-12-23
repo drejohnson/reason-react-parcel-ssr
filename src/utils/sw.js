@@ -7,7 +7,7 @@ workboxSW.precache([])
 workboxSW.precache(['https://fonts.googleapis.com/css?family=Lato'])
 
 workboxSW.router.registerRoute(
-  /(.*)\.(?:png|gif|jpg)/,
+  /(.)(?:png|jpg|webp|svg)/,
   workboxSW.strategies.cacheFirst({
     cacheName: 'images-cache',
     cacheExpiration: {
@@ -17,11 +17,10 @@ workboxSW.router.registerRoute(
   })
 )
 
-workboxSW.router.registerRoute('/', workboxSW.strategies.staleWhileRevalidate())
-
 workboxSW.router.registerRoute(
-  '/(.*)',
+  '/^(https?.*)/',
   workboxSW.strategies.networkFirst({
+    cacheName: 'cache-all',
     cacheExpiration: {
       maxEntries: 50
     },
