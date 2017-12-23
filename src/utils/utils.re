@@ -12,11 +12,11 @@ type element;
 
 [@bs.val] external browserEnv : bool = "process.browser";
 
-let isDEV = Js.Boolean.to_js_boolean(nodeEnv !== "production");
+let isDEV = nodeEnv !== "production";
 
-let isPROD = Js.Boolean.to_js_boolean(nodeEnv === "production");
+let isPROD = nodeEnv === "production";
 
-let isBrowser = Js.Boolean.to_js_boolean(browserEnv);
+let isBrowser = browserEnv;
 
 let text = ReasonReact.stringToElement;
 
