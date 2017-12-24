@@ -12,6 +12,8 @@ type element;
 
 [@bs.val] external browserEnv : bool = "process.browser";
 
+[@bs.val] external requireAssetURI : string => string = "require";
+
 let isDEV = nodeEnv !== "production";
 
 let isPROD = nodeEnv === "production";
