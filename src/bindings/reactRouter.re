@@ -57,3 +57,9 @@ module Link = {
   let make = (~_to, children) =>
     ReasonReact.wrapJsForReason(~reactClass=link, ~props={"to": _to}, children);
 };
+
+module NavLink = {
+  [@bs.module "react-router-dom"] external navLink : ReasonReact.reactClass = "NavLink";
+  let make = (~_to: string, children) =>
+    ReasonReact.wrapJsForReason(~reactClass=navLink, ~props={"to": _to}, children);
+};
