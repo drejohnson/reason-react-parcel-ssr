@@ -1,11 +1,11 @@
 {
   "dir": "ltr",
   "lang": "en",
-  "name": "PHRESHR",
+  "name": "ReasonReact Parcel",
   "scope": "/",
   "display": "standalone",
   "start_url": "/",
-  "short_name": "PHR",
+  "short_name": "ReasonReact",
   "theme_color": "#111111",
   "description": "",
   "orientation": "any",
@@ -13,40 +13,14 @@
   "related_applications": [],
   "prefer_related_applications": false,
   "icons": [{
-      "src": "/icons/android/android-launchericon-512-512.png",
-      "sizes": "512x512"
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
     },
     {
-      "src": "/icons/android/android-launchericon-192-192.png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "/icons/android/android-launchericon-144-144.png",
-      "sizes": "144x144"
-    },
-    {
-      "src": "/icons/android/android-launchericon-96-96.png",
-      "sizes": "96x96"
-    },
-    {
-      "src": "/icons/android/android-launchericon-72-72.png",
-      "sizes": "72x72"
-    },
-    {
-      "src": "/icons/android/android-launchericon-48-48.png",
-      "sizes": "48x48"
-    },
-    {
-      "src": "/icons/chrome/chrome-extensionmanagementpage-48-48.png",
-      "sizes": "48x48"
-    },
-    {
-      "src": "/icons/chrome/chrome-favicon-16-16.png",
-      "sizes": "16x16"
-    },
-    {
-      "src": "/icons/chrome/chrome-installprocess-128-128.png",
-      "sizes": "128x128"
+      "src": "/android-chrome-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
     }
   ]
 }
