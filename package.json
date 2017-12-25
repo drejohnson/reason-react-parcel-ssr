@@ -2,7 +2,7 @@
   "name": "with-reason-parcel",
   "version": "0.1.0",
   "scripts": {
-    "dev": "concurrently \"bsb -clean-world -make-world -w\" \"parcel src/index.html --public-url /dist/\"",
+    "dev": "concurrently \"bsb -clean-world -make-world -w\" \"parcel src/index.html\"",
     "prebuild": "node tools/clean.js",
     "build": "bsb -make-world | parcel build src/index.html -d dist/client --public-url / && workbox inject:manifest",
     "postbuild": "node tools/move.js",
@@ -22,7 +22,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.2",
-    "parcel-bundler": "^1.2.1",
+    "parcel-bundler": "^1.3.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-ga": "^2.3.5",
