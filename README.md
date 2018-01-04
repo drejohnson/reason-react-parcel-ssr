@@ -13,6 +13,8 @@
 * [x] [React Router v4](https://reacttraining.com/react-router/api) *[bindings](https://github.com/reasonml-community/bs-react-router) (Waiting for Reason Router solution)
 * [x] [React Helmet](https://github.com/nfl/react-helmet) bindings
 
+**Check out the [Universal-Router](https://github.com/kriasoft/universal-router) branch**
+
 ## Quick start
 
 * Use install dependencies: `yarn`
