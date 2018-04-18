@@ -9,7 +9,9 @@ let renderHTML = (_next, req, res) => {
   let path = req |> Express.Request.path;
   let app =
     <ReactHelmet.Provider context=helmetContext>
-      <App initialUrl=path />
+      <ReasonApollo.Provider client=Apollo.client>
+        <App initialUrl=path />
+      </ReasonApollo.Provider>
     </ReactHelmet.Provider>;
   getDataFromTree(app)
   |> Js.Promise.then_(() =>
