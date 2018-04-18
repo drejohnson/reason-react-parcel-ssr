@@ -1,3 +1,5 @@
+[%bs.raw "require('isomorphic-unfetch')"];
+
 /* open ApolloLinks; */
 open ApolloInMemoryCache;
 
