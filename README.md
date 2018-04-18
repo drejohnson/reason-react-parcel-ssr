@@ -7,13 +7,11 @@
 ## Features
 
 * [x] [ReasonReact](https://reasonml.github.io/reason-react/)
-* [x] PWA - [Workbox](https://developers.google.com/web/tools/workbox/)
-* [x] SSR - Server side rendering
 * [x] [Parcel - zero config web app bundler](https://parceljs.org/)
-* [x] [React Router v4](https://reacttraining.com/react-router/api) *[bindings](https://github.com/reasonml-community/bs-react-router) (Waiting for Reason Router solution)
-* [x] [React Helmet](https://github.com/nfl/react-helmet) bindings
-
-**Check out the [Universal-Router](https://github.com/drejohnson/reason-parcel-ssr/tree/universal-router) branch**
+* [x] SSR - Server side rendering
+* [x] [React Helmet Async](https://github.com/NYTimes/react-helmet-async)
+* [ ] Code-Splitting - [Reason Loadable](https://github.com/kMeillet/reason-loadable)
+* [ ] PWA - [Workbox](https://developers.google.com/web/tools/workbox/)
 
 ## Quick start
 
@@ -24,4 +22,5 @@
 
 ## TODO
 
-* [ ] Add "CSS-In-Reason" library. Either [bs-css](https://github.com/SentiaAnalytics/bs-css) or [bs-react-fela](https://github.com/astrada/bs-react-fela).
+* [ ] Add styling. Either [bs-css](https://github.com/SentiaAnalytics/bs-css) or [bs-react-fela](https://github.com/astrada/bs-react-fela).
+* [ ] Add GraphQL server

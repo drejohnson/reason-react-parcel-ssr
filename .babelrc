@@ -1,0 +1,10 @@
+{
+  "env": {
+    "server": {
+      "plugins": ["babel-plugin-dynamic-import-node"]
+    },
+    "client": {
+      "plugins": []
+    }
+  }
+}

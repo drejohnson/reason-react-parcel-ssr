@@ -1,73 +1,67 @@
-open Express;
+[@bs.module "react-apollo"]
+external getDataFromTree : ReasonReact.reactElement => Js.Promise.t(unit) =
+  "getDataFromTree";
 
-open ReactRouter;
+let app = Express.App.make();
 
-let app = express();
+let renderHTML = (_next, req, res) => {
+  let helmetContext = Js.Obj.empty();
+  let path = req |> Express.Request.path;
+  let app =
+    <ReactHelmet.Provider context=helmetContext>
+      <App initialUrl=path />
+    </ReactHelmet.Provider>;
+  getDataFromTree(app)
+  |> Js.Promise.then_(() =>
+       {
+         let title = helmetContext##helmet##title##toString();
+         let meta = helmetContext##helmet##meta##toString();
+         let link = helmetContext##helmet##link##toString();
+         let script = helmetContext##helmet##script##toString();
+         let htmlAttr = helmetContext##helmet##htmlAttributes##toString();
+         let content = ReactDOMServerRe.renderToString(app);
+         Express.Response.sendString(
+           Template.make(
+             ~content,
+             ~title,
+             ~meta,
+             ~link,
+             ~script,
+             ~htmlAttr,
+             (),
+           ),
+           res,
+         );
+       }
+       |> Js.Promise.resolve
+     );
+};
 
-App.useOnPath(
-  app,
-  ~path="/",
-  Express.Static.make("dist/client", Express.Static.defaultOptions())
-  |> Express.Static.asMiddleware
-);
+Express.Static.defaultOptions()
+|> Express.Static.make("dist/public")
+|> Express.Static.asMiddleware
+|> Express.App.useOnPath(app, ~path="/");
 
-App.useOnPath(
-  app,
-  ~path="/",
-  Express.Static.make("static", Express.Static.defaultOptions()) |> Express.Static.asMiddleware
-);
+Express.Static.defaultOptions()
+|> Express.Static.make("public")
+|> Express.Static.asMiddleware
+|> Express.App.useOnPath(app, ~path="/");
 
-App.get(
-  app,
-  ~path="/*",
-  Middleware.from(
-    (_req, res, _next) => {
-      let context = Js.Json.object_(Js.Dict.empty());
-      let location = Utils.geturl(_req);
-      let html =
-        ReactDOMServerRe.renderToString(
-          <ServerRouter context location> (Root.make()) </ServerRouter>
-        );
-      let helmet = ReactHelmet.renderStatic();
-      let helmetHtmlAttributes = helmet##htmlAttributes##toString();
-      let helmetTitle = helmet##title##toString();
-      let helmetMeta = helmet##meta##toString();
-      let helmetLink = helmet##link##toString();
-      let helmetScript = helmet##script##toString();
-      let filePath = Node_path.resolve("./dist", "index.html");
-      let index = Node.Fs.readFileAsUtf8Sync(filePath);
-      let document =
-        index
-        |> Js.String.replace({j|<html>|j}, {j|<html ⚡ $(helmetHtmlAttributes)>|j})
-        |> Js.String.replace(
-             {j|<head>|j},
-             {j|<head>
-              $helmetTitle
-              $helmetMeta
-              $helmetLink
-              $helmetScript
-          |j}
-           )
-        |> Js.String.replace({j|<div id="root">|j}, {j|<div id="root">$html|j});
-      Response.sendString(res, document)
-    }
-  )
-);
+renderHTML
+|> Express.PromiseMiddleware.from
+|> Express.App.get(app, ~path="*");
 
-[@bs.val] external processEnvPort : string = "process.env.PORT";
-
-let port = int_of_string("5678" /* processEnvPort */);
-
-let onListen = (exn) => {
-  let error = Js.Nullable.to_opt(exn);
-  switch error {
+let onListen = exn => {
+  let error = Js.Nullable.toOption(exn);
+  switch (error) {
   | Some(err) =>
     Js.log(
       "Express listen error: "
-      ++ Js.Option.getWithDefault("(nothing to report)", Js.Exn.message(err))
+      ++ Js.Option.getWithDefault("(no message)", Js.Exn.message(err)),
     )
-  | None => Js.log("Server" ++ " is listening on port " ++ Js.Int.toString(port))
-  }
+  | None =>
+    Js.log(" ...listening on port " ++ Js.Int.toString(Config.Env.port))
+  };
 };
 
-App.listen(app, ~port, ~onListen, ());
+Express.App.listen(app, ~port=Config.Env.port, ~onListen, ());

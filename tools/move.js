@@ -1,13 +1,14 @@
 const path = require('path')
 const fs = require('fs-extra')
+const config = require('./config')
 
-const appDirectory = fs.realpathSync(process.cwd())
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
-
-fs.moveSync(
-  resolveApp('dist/client/index.html'),
-  resolveApp('dist/index.html'),
-  {
-    overwrite: true
+const mv = async (i, o) => {
+  const exists = await fs.pathExists(i)
+  if (exists) {
+    await fs.moveSync(config.resolveApp(i), config.resolveApp(o), {
+      overwrite: true
+    })
   }
-)
+}
+
+mv('lib/js/src/server/server.bs.js', 'dist/server/index.js')

@@ -1,7 +1,5 @@
 const path = require('path')
 const fs = require('fs-extra')
+const config = require('./config')
 
-const appDirectory = fs.realpathSync(process.cwd())
-const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
-
-fs.emptyDirSync(resolveApp('dist'))
+fs.emptyDirSync(config.resolveApp('dist'))
