@@ -14,7 +14,7 @@ let isBrowser = Js.typeof(window: Dom.window) !== "undefined";
 let isNode = Js.typeof(window: Dom.window) === "undefined";
 
 module Text = {
-  let string = ReasonReact.stringToElement;
+  let string = ReasonReact.string;
   let int = n => n |> string_of_int |> string;
   let float = f => f |> string_of_float |> string;
   let any = v => v |> Js.String.make |> string;
@@ -22,9 +22,9 @@ module Text = {
 
 let text = Text.string;
 
-let list = list => list |> Array.of_list |> ReasonReact.arrayToElement;
+let list = list => list |> Array.of_list |> ReasonReact.array;
 
-let array = array => array |> ReasonReact.arrayToElement;
+let array = array => array |> ReasonReact.array;
 
 /* copied from  ReasonReact */
 let parseUrl = url =>
