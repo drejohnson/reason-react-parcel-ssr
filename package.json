@@ -46,9 +46,9 @@
     "react-helmet": "^5.2.0",
     "react-helmet-async": "^0.0.5",
     "react-hot-loader": "^4.1.0",
-    "reason-apollo": "https://github.com/apollographql/reason-apollo.git#feature/react-apollo-2.1",
+    "reason-apollo": "^0.7.2-beta",
     "reason-loadable": "^0.4.0",
-    "reason-react": "^0.3.4"
+    "reason-react": "^0.4.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.44",
